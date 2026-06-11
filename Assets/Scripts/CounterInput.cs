@@ -1,14 +1,15 @@
+using System;
 using UnityEngine;
 
 public class CounterInput : MonoBehaviour
 {
-    [SerializeField] private CounterService _counterService;
+    private const int ClickButton = 0;
+
+    public event Action OnClicked;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            _counterService.Toggle();
-        }
+        if (Input.GetMouseButtonDown(ClickButton))
+            OnClicked?.Invoke();
     }
 }
